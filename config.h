@@ -5,6 +5,7 @@ const unsigned int interval = 1000;
 
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
+static const char network[] = "enp5s0";
 
 /* maximum output string length */
 #define MAXLEN 2048
@@ -63,10 +64,11 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ ram_free, "%s ",           NULL },
-	{ ram_perc, "%sp ",           NULL },
-	{ ipv4,     "%s ",            "enp5s0"},
-	{ netspeed_rx,     "%s ",            "enp5s0"},
-	{ netspeed_tx,     "%s ",            "enp5s0"},
-	{ datetime, "%s",           "%F %T" },
+	// { battery_perc,     "<\x03 %60s", "BAT0" },
+	{ netspeed_rx,     "\ue0b3\ueac2 %s",  network },
+	{ netspeed_tx,     "|\ueac3 %s",  network },
+	{ ipv4,            "|󰀂 %s",  network },
+	{ cpu_perc,	   "\ue0b3\ueacd %2s%%",  NULL },
+	{ datetime,        "\x1b[42m \ue0b3\uf017  %s",   "%a %b %d - %R" },
+
 };
